@@ -1,0 +1,20 @@
+{
+  "root": true,
+  "extends": ["eslint:recommended"],
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 2019,
+    "sourceType": "module"
+  },
+  "env": {
+    "es6": true,
+    "node": true
+  },
+  "globals": {},
+  "rules": {
+    "no-extra-semi": "error",
+    "semi": ["error", "always"],
+    "quotes": ["error", "double"],
+    "no-console": "error"
+  }
+}
