@@ -1,9 +1,11 @@
 import React from "react";
 
+import CommentBox from "./components/CommentBox";
+
 function App() {
   return (
     <div className="App">
-      <h1>Learn React</h1>
+      <CommentBox />
     </div>
   );
 }
