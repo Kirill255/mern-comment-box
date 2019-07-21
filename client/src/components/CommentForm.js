@@ -1,21 +1,21 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const CommentForm = ({ id, author, text }) => (
-  <form onSubmit={(e) => e.preventDefault()}>
+const CommentForm = ({ author, text, handleSubmit, handleChangeAuthor, handleChangeText }) => (
+  <form onSubmit={handleSubmit}>
     <input
       type="text"
       name="author"
       placeholder="Your name..."
       value={author}
-      onChange={() => {}}
+      onChange={handleChangeAuthor}
     />
     <input
       type="text"
       name="text"
       placeholder="Say something..."
       value={text}
-      onChange={() => {}}
+      onChange={handleChangeText}
     />
 
     <button type="submit">Submit</button>
@@ -29,7 +29,10 @@ CommentForm.defaultProps = {
 
 CommentForm.propTypes = {
   author: PropTypes.string,
-  text: PropTypes.string
+  text: PropTypes.string,
+  handleSubmit: PropTypes.func,
+  handleChangeAuthor: PropTypes.func,
+  handleChangeText: PropTypes.func
 };
 
 export default CommentForm;

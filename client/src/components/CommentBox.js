@@ -16,7 +16,7 @@ const CommentBox = () => {
 
   const loadCommentsFromServer = () => {
     fetch("/api/comments")
-      .then((res) => res.json)
+      .then((res) => res.json())
       .then((res) => {
         if (!res.success) {
           setError(res.error);
@@ -25,6 +25,34 @@ const CommentBox = () => {
         }
       });
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!author || !text) return;
+    // сначала обновляем нашу data, чтобы сразу же отобразить новый коммент, _id произвольный, через 2c сработает setInterval и подтянутся новые данные с сервера, с уже сервером(базой) установленным _id
+    const newComments = [...data, { _id: Date.now().toString(), author, text }];
+    setData(newComments);
+
+    fetch("/api/comments", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ author, text })
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        if (!res.success) {
+          setError(res.error.message || res.error);
+        } else {
+          // успешно отправлено
+          setAuthor("");
+          setText("");
+          setError(null);
+        }
+      });
+  };
+
+  const handleChangeAuthor = (e) => setAuthor(e.target.value);
+  const handleChangeText = (e) => setText(e.target.value);
 
   useEffect(() => {
     const id = setInterval(() => {
@@ -43,7 +71,13 @@ const CommentBox = () => {
       </div>
 
       <div className="form">
-        <CommentForm author={author} text={text} />
+        <CommentForm
+          author={author}
+          text={text}
+          handleSubmit={handleSubmit}
+          handleChangeAuthor={handleChangeAuthor}
+          handleChangeText={handleChangeText}
+        />
       </div>
 
       {error && <p>{error}</p>}
