@@ -1,16 +1,14 @@
-if (process.env.NODE_ENV !== "production") {
-  require("dotenv").config(); // 1) import не работает внутри условий 2) https://www.npmjs.com/package/dotenv#how-do-i-use-dotenv-with-import-
-}
 import express from "express";
 import logger from "morgan";
 import mongoose from "mongoose";
 
+import { getSecret } from "./secrets";
 import comments from "./routes/comments";
-const API_PORT = process.env.API_PORT || 3001; // порт сменил на 3001 т.к. react на 3000
+const API_PORT = getSecret("apiPort") || 3001; // порт сменил на 3001 т.к. react на 3000
 
 const app = express();
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.DB_URL, {
+mongoose.connect(getSecret("dbUrl"), {
   useNewUrlParser: true,
   reconnectTries: Number.MAX_VALUE
 });
