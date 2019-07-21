@@ -33,7 +33,7 @@ app.use(express.json({ limit: "20mb" }));
 app.use(express.urlencoded({ limit: "20mb", extended: false }));
 
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.json({ message: "Hello World!" });
 });
 
 app.use("/api", comments);
