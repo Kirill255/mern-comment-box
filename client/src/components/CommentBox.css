@@ -1,3 +1,9 @@
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
 .container {
   background-color: #f1f1f1;
   box-sizing: border-box;
@@ -8,7 +14,6 @@
   flex-flow: column nowrap;
   align-items: center;
   justify-content: space-between;
-
 }
 
 .comments {
@@ -42,7 +47,6 @@
   border-radius: 50%;
 }
 
-
 .singleCommentContent h3 {
   margin: 0;
   padding-right: 5px;
@@ -67,7 +71,7 @@
 }
 
 .singleCommentButtons a {
-  margin: 0px 3px;;
+  margin: 0px 3px;
   padding-top: 10px;
   cursor: pointer;
   font-size: 10px;

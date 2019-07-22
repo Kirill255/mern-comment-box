@@ -132,6 +132,10 @@ const CommentBox = () => {
     return () => clearInterval(intervalRef.current);
   }, []);
 
+  useEffect(() => {
+    window.scrollTo(0, document.body.scrollHeight);
+  }, [data.length]);
+
   return (
     <div className="container">
       <div className="comments">
